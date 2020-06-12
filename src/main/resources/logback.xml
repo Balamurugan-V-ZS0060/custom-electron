@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<contextListener
+		class="ch.qos.logback.classic.jul.LevelChangePropagator">
+		<resetJUL>true</resetJUL>
+	</contextListener>
+
+	<appender name="CONSOLE"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] [%-5level] %logger{15} - [%mdc{logid}] %msg%n%rEx
+			</pattern>
+			<immediateFlush>false</immediateFlush>
+		</encoder>
+	</appender>
+
+
+	<appender name="RollingFile-Appender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>/home/bala/applog/electron/electron.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>/home/bala/applog/electron/archive/electron.%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>100MB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] [%-5level] %logger{36} - [%mdc{logid}] %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<root level="info">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="RollingFile-Appender" />
+	</root>
+
+	<!-- Uncomment for logging ALL HTTP request and responses -->
+	<!-- <logger name="io.gatling.http" level="TRACE" /> -->
+	<!-- Uncomment for logging ONLY FAILED HTTP request and responses -->
+	<!-- <logger name="io.gatling.http" level="DEBUG" /> -->
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+	</root>
+	
+	<logger name="com.zaxxer.hikari" level="debug" additivity="false">
+        <appender-ref ref="RollingFile-Appender"/>
+    </logger>
+
+</configuration>

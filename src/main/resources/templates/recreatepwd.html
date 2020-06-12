@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>electron</title>
+<script type="text/javascript" th:src="@{/js/jQuery.js}"></script>
+<script type="text/javascript" th:src="@{/js/app.js}"></script>
+</head>
+<body>
+	<h2>Recreate Password</h2>
+	<form method="post" action="#" th:action="@{/processrecreatepwd}" th:object="${recreatePwdRequest}">
+		Email Id : <input type="text" name="emailid" id="emailid" th:field="*{emailid}"/> <br/><br/><br/>
+		New Password : <input type="text" name="newpassword" id="newpassword" th:field="*{newpassword}"/> <br/><br/><br/>
+		Confirm Password : <input type="text" name="confirmpassword" id="confirmpassword" th:field="*{confirmpassword}"/>
+		<input type="submit"/>
+	</form>
+	<p th:if="${code=='1'}" th:text="${message}"></p>
+</body>
+</html>

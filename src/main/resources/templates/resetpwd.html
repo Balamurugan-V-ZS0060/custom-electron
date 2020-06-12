@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>electron</title>
+</head>
+<body>
+	<h2>Reset Password</h2>
+	<form method="post" action="#" th:action="@{/processresetpwd}" th:object="${resetPwdRequest}">
+		New Password : <input type="text" name="newpassword" id="newpassword" th:field="*{newpassword}"/> <br/><br/><br/>
+		Confirm Password : <input type="text" name="confirmpassword" id="confirmpassword" th:field="*{confirmpassword}"/>
+		<input type="submit"/>
+	</form>
+	<p th:if="${code=='1'}" th:text="${message}"></p>
+	<a th:if="${code=='1'}" href="/electron">Home</a>
+</body>
+</html>
